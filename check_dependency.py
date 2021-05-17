@@ -4,9 +4,9 @@ import sys
 
 
 def main():
-    if len(sys.argv) == 1:
-        raise SystemError("Please provide relevant requirements.txt file path")
-    file_paths = sys.argv[1:]
+    file_paths = set(sys.argv[1:])
+    if len(file_paths) < 2:
+        raise SystemError("Please provide enough relevant requirements.txt file path")
     dependencies = dict()
     for path in file_paths:
         check_dependencies_for_path(path, dependencies)
